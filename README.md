@@ -8,7 +8,7 @@
 5. [Change Root Password](#change-root-password)
 6. [Create a New Ubuntu User](#create-a-new-ubuntu-user)
 7. [Remove Ubuntu Default User](#remove-ubuntu-default-user) 
-8. [Transfer HR Forms Source Code and Database](#transfer-hr-forms-source-code-and-database) 
+8. [Transfer and Extract HR Forms Source Code and Database](#transfer-and-extract-hr-forms-source-code-and-database) 
 9. [Install MySQL and Set Up Database](#install-mysql-and-set-up-database)  
 10. [Install Python 3, pip, and virtualenv](#install-python-3-pip-and-virtualenv) 
 11. [Install Dependencies and Set Up PERA Forms Software](#install-dependencies-and-set-up-pera-forms-software) 
@@ -134,7 +134,7 @@ Exit the root session
 exit
 ```
 
-## Transfer HR Forms Source Code and Database
+## Transfer and Extract HR Forms Source Code and Database
 On your local computer, open cmd/terminal then navigate to the **.pem** file location:
 ```cmd
 cd <PATH_TO_PEM_FILE>
@@ -148,7 +148,22 @@ Verify the transfer
 ssh -i <PEM_FILE> <NEW_USER>@<EC2_PUBLIC_IP>
 ls -lh /var/www/
 ```
-Check if the compressed file is present.
+If the compressed file is present, install unrar:
+```cmd
+sudo apt install unrar -y
+```
+Extract compressed file to current directory:
+```cmd
+unrar x file.rar
+```
+Verify extraction:
+```cmd
+ls -lh /var/www/
+```
+If extracted, remove compressed file:
+```cmd
+sudo rm -f <PATH_TO_THE_COMPRESSED_SOURCECODE_AND_DATABASE>
+```
 
 ## Install MySQL and Set Up Database
 
