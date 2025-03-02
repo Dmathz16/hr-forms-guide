@@ -43,7 +43,7 @@ For security reasons, it's recommended to change the root password:
 ```cmd
 sudo passwd root
 ```
-You'll be prompted to enter and confirm a **new root password**.
+You'll be prompted to enter and confirm a **new root password**. 
 
 ## Create a New Ubuntu User
 
