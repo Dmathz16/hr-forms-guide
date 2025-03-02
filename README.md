@@ -335,6 +335,49 @@ If the app still running press **CTRL + C** to stop.
 	```
 
 ## Configure Nginx
+* Create an Nginx configuration file for the application:
+	```cmd
+	sudo nano /etc/nginx/sites-available/hr_forms.conf
+	```
+* Add the following configuration to handle domain redirection and proxy requests:
+	```cmd
+	# Redirect www.<domain_name> to <domain_name>
+	server {
+	    listen 80;
+	    server_name www.<domain_name>;
+	
+	    return 301 http://<domain_name>$request_uri;
+	}
+	# Redirect any IP address requests to <domain_name>
+	server {
+	    listen 80;
+	    server_name <public_ip>;  
+	
+	    return 301 http://<domain_name>$request_uri;
+	}
+	# Main server block for <domain_name>
+	server {
+	    listen 80;
+	    server_name <domain_name>;
+	
+	    location / {
+	        include proxy_params;
+	        proxy_pass http://unix:/var/www/<project-name>/application.sock;
+	    }
+	}
+	```
+* Enable the new configuration by creating a symbolic link:
+	```cmd
+	sudo ln -s /etc/nginx/sites-available/hr_forms.conf /etc/nginx/sites-enabled/
+	```
+* Check for syntax errors in the Nginx configuration:
+	```cmd
+	sudo nginx -t
+	```
+* Restart Nginx to apply the changes:
+	```cmd
+	sudo systemctl restart nginx
+	```
 
 ## Open Necessary Ports in EC2 Security Group
 
