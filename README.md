@@ -166,6 +166,61 @@ sudo rm -f <PATH_TO_THE_COMPRESSED_SOURCECODE_AND_DATABASE>
 ```
 
 ## Install MySQL and Set Up Database
+Install and set up the MySQL Server:
+```cmd
+sudo apt-get install mysql-server -y
+sudo mysql_secure_installation
+sudo systemctl status mysql
+```
+Connect to the MySQL Server:
+```cmd
+sudo mysql -u root -p
+```
+Create a database:
+```cmd
+CREATE DATABASE <DATABASE_NAME>;
+SHOW DATABASES;
+EXIT;
+```
+Configure a new MySQL user account for local connections:
+```cmd
+CREATE USER '<MYSQL_USERNAME>'@'localhost' IDENTIFIED BY '<MYSQL_PASSWORD>';
+GRANT ALL PRIVILEGES ON <DATABASE_NAME>.* TO '<MYSQL_USERNAME>'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+```
+Import an existing SQL file using the new MySQL account:
+```cmd
+sudo mysql -u <MYSQL_USERNAME> -p <DATABASE_NAME> < <PATH_TO_SQL_FILE>
+```
+Verify the data import:
+```cmd
+sudo mysql -u <MYSQL_USERNAME> -p
+```
+```cmd
+SHOW DATABASES;
+USE <DATABASE_NAME>;
+SHOW TABLES;
+EXIT;
+```
+Open the MySQL configuration file:
+```cmd
+sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+```
+Add the following settings at the bottom of the configuration file, then save:
+```cmd
+[mysqld]
+thread_cache_size = 4
+innodb_thread_concurrency = 4
+innodb_read_io_threads = 2
+innodb_write_io_threads = 2
+wait_timeout = 300
+interactive_timeout = 300
+innodb_buffer_pool_size = 128M
+event_scheduler = OFF
+key_buffer = 8M
+performance_schema = 0
+```
 
 ## Install Python 3, pip, and virtualenv
 
