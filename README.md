@@ -244,10 +244,19 @@ Open app configurations:
 ```cmd
 nano <PATH_TO_THE_UNCOMPRESSED_SOURCECODE_INIT_FILE>
 ```
+Update the database variable values then save:
+```cmd
+DB_SERVER   = "localhost"
+DB_PORT     = "3306"
+DB_USERNAME = "<MYSQL_USERNAME>"
+DB_PASSWORD = "<MYSQL_PASSWORD>"
+DB_NAME     = "<DATABASE_NAME>"
+```
 Run the app:
 ```cmd
-flask --app application run
+flask --app application run --debug --host 0.0.0.0
 ```
+Open the app in browser using url **http://<EC2_PUBLIC_IP>:5000**
 
 ## Set Up Gunicorn
 
