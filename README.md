@@ -4,18 +4,19 @@
 1. [Prerequisites](#prerequisites)
 2. [Connect to EC2 Instance](#connect-to-ec2-instance) 
 3. [Update System Packages](#update-system-packages) 
-4. [Create a New Ubuntu User](#create-a-new-ubuntu-user) 
-5. [Transfer HR Forms Source Code and Database](#transfer-hr-forms-source-code-and-database) 
-6. [Install Nginx](#install-nginx)  
-7. [Install MySQL and Set Up Database](#install-mysql-and-set-up-database)  
-8. [Install Python 3, pip, and virtualenv](#install-python-3-pip-and-virtualenv) 
-9. [Install Dependencies and Set Up PERA Forms Software](#install-dependencies-and-set-up-pera-forms-software) 
-10. [Set Up Gunicorn](#set-up-gunicorn)  
-11. [Configure Nginx](#configure-nginx) 
-12. [Open Necessary Ports in EC2 Security Group](#open-necessary-ports-in-ec2-security-group) 
-13. [Configure UFW](#configure-ufw) 
-14. [Test the Application](#test-the-application) 
-15. [Enable SSL with GoDaddy (Optional)](#enable-ssl-with-goDaddy-optional) 
+4. [Change root password](#change-root-password)
+5. [Create a New Ubuntu User](#create-a-new-ubuntu-user) 
+6. [Transfer HR Forms Source Code and Database](#transfer-hr-forms-source-code-and-database) 
+7. [Install Nginx](#install-nginx)  
+8. [Install MySQL and Set Up Database](#install-mysql-and-set-up-database)  
+9. [Install Python 3, pip, and virtualenv](#install-python-3-pip-and-virtualenv) 
+10. [Install Dependencies and Set Up PERA Forms Software](#install-dependencies-and-set-up-pera-forms-software) 
+11. [Set Up Gunicorn](#set-up-gunicorn)  
+12. [Configure Nginx](#configure-nginx) 
+13. [Open Necessary Ports in EC2 Security Group](#open-necessary-ports-in-ec2-security-group) 
+14. [Configure UFW](#configure-ufw) 
+15. [Test the Application](#test-the-application) 
+16. [Enable SSL with GoDaddy (Optional)](#enable-ssl-with-goDaddy-optional) 
 
 ## Prerequisites
 Before starting, ensure you have:
@@ -30,7 +31,19 @@ Use SSH to connect to your instance. Replace <PEM_FILE> and <EC2_PUBLIC_IP> acco
 ```cmd
 ssh -i <PEM_FILE> ubuntu@<EC2_PUBLIC_IP>
 ```
+
 ## Update System Packages
+Ensure the system is up to date:
+```cmd
+sudo apt update && sudo apt upgrade -y
+```
+
+## Change Root Rassword
+For security reasons, it's recommended to change the root password:
+```cmd
+sudo passwd root
+```
+You'll be prompted to enter and confirm a **new root password**.
 
 ## Create a New Ubuntu User
 
