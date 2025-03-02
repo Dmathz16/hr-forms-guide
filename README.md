@@ -8,7 +8,7 @@
 5. [Transfer HR Forms Source Code and Database](#transfer-hr-forms-source-code-and-database) 
 6. [Install Nginx](#install-nginx)  
 7. [Install MySQL and Set Up Database](#install-mysql-and-set-up-database)  
-8. [Install Python 3, pip, and virtualenv](#install-python-3,-pip,-and-virtualenv) 
+8. [Install Python 3, pip, and virtualenv](#install-python-3-pip-and-virtualenv) 
 9. [Install Dependencies and Set Up PERA Forms Software](#install-dependencies-and-set-up-pera-forms-software) 
 10. [Set Up Gunicorn](#set-up-gunicorn)  
 11. [Configure Nginx](#configure-nginx) 
