@@ -301,7 +301,7 @@ If the app still running press **CTRL + C** to stop.
 * Paste the following code into the service file, update the values as needed, then save:
 	```cmd
 	[Unit]
-	Description=My app description
+	Description=PERAMPC HR Forms
 	After=network.target
 	
 	[Service]
