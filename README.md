@@ -12,12 +12,13 @@
 9. [Install MySQL and Set Up Database](#install-mysql-and-set-up-database)  
 10. [Install Python 3 and Its Dependencies](#install-python-3-and-its-dependencies) 
 11. [Install Dependencies and Set Up PERA Forms Software](#install-dependencies-and-set-up-pera-forms-software) 
-12. [Set Up Gunicorn and WSGI](#set-up-gunicorn-and-wsgi)  
-13. [Configure Nginx](#configure-nginx) 
-14. [Open Necessary Ports in EC2 Security Group](#open-necessary-ports-in-ec2-security-group) 
-15. [Configure UFW](#configure-ufw) 
-16. [Test the Application](#test-the-application) 
-17. [Enable SSL with GoDaddy (Optional)](#enable-ssl-with-goDaddy-optional) 
+12. [Set Up Gunicorn and WSGI](#set-up-gunicorn-and-wsgi)
+13. [Run Flask App as a System Service](#run-flask-app-as-a-system-service) 
+14. [Configure Nginx](#configure-nginx) 
+15. [Open Necessary Ports in EC2 Security Group](#open-necessary-ports-in-ec2-security-group) 
+16. [Configure UFW](#configure-ufw) 
+17. [Test the Application](#test-the-application) 
+18. [Enable SSL with GoDaddy (Optional)](#enable-ssl-with-goDaddy-optional) 
 
 ## Prerequisites
 Before starting, ensure you have:
@@ -290,6 +291,51 @@ If the app still running press **CTRL + C** to stop.
 * Deactivate environment if done testing:
 	```cmd
 	deactivate
+	```
+ 
+## Run Flask App as a System Service
+* After deactivating the Python environment, create a new service file:
+	```cmd
+	sudo nano /etc/systemd/system/hr_forms.service
+	```
+* Paste the following code into the service file, update the values as needed, then save:
+	```cmd
+	[Unit]
+	Description=My app description
+	After=network.target
+	
+	[Service]
+	User=<NEW_USER> 
+	Group=www-data
+	WorkingDirectory=/var/www/hr_forms
+	Environment="PATH=/var/www/hr_forms/.venv/bin"
+	ExecStart=/var/www/hr_forms/.venv/bin/gunicorn --workers 2 --timeout 20 --bind unix:application.sock -m 007 wsgi:app
+	
+	# Log output configuration
+	StandardOutput=append:/var/log/hr_forms/gunicorn_access.log
+	StandardError=append:/var/log/hr_forms/gunicorn_error.log
+	
+	[Install]
+	WantedBy=multi-user.target
+	```
+* Create a directory for application logs:
+	```cmd
+	sudo mkdir -p /var/log/hr_forms
+	```
+	To check logs (optional):
+	```cmd
+	sudo tail -f /var/log/hr_forms/gunicorn_error.log
+	```
+* Set permissions for the log directory:
+	```cmd
+	sudo chown www-data:www-data /var/log/hr_forms
+	```
+* Start and enable the new service:
+	```cmd
+	sudo systemctl daemon-reload
+	sudo systemctl start hr_forms
+	sudo systemctl enable hr_forms
+	sudo systemctl status hr_forms
 	```
 
 ## Configure Nginx
