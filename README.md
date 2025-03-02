@@ -382,6 +382,13 @@ If the app still running press **CTRL + C** to stop.
 ## Open Necessary Ports in EC2 Security Group
 
 ## Configure UFW
+	```cmd
+	sudo ufw allow ssh
+	sudo ufw allow 'Nginx Full'
+	sudo ufw allow 3306/tcp
+	sudo ufw enable
+	sudo ufw status
+	```
 
 ## Test the Application
 
