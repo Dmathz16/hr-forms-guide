@@ -6,16 +6,16 @@
 3. [Update System Packages](#update-system-packages) 
 4. [Create a New Ubuntu User](#create-a-new-ubuntu-user) 
 5. [Transfer HR Forms Source Code and Database](#transfer-hr-forms-source-code-and-database) 
-6. [Install Nginx](#Install Nginx)  
-7. [Install MySQL and Set Up Database](#Install MySQL and Set Up Database)  
-8. [Install Python 3, pip, and virtualenv](#Install Python 3, pip, and virtualenv) 
-9. [Install Dependencies and Set Up PERA Forms Software](#Install Dependencies and Set Up PERA Forms Software) 
-10. [Set Up Gunicorn](#Set Up Gunicorn)  
-11. [Configure Nginx](#Configure Nginx) 
-12. [Open Necessary Ports in EC2 Security Group](#Open Necessary Ports in EC2 Security Group) 
-13. [Configure UFW](#Configure UFW) 
-14. [Test the Application](#Test the Application) 
-15. [Enable SSL with GoDaddy](#Enable SSL with GoDaddy) 
+6. [Install Nginx](#install-nginx)  
+7. [Install MySQL and Set Up Database](#install-mysql-and-set-up-database)  
+8. [Install Python 3, pip, and virtualenv](#install-python-3,-pip,-and-virtualenv) 
+9. [Install Dependencies and Set Up PERA Forms Software](#install-dependencies-and-set-up-pera-forms-software) 
+10. [Set Up Gunicorn](#set-up-gunicorn)  
+11. [Configure Nginx](#configure-nginx) 
+12. [Open Necessary Ports in EC2 Security Group](#open-necessary-ports-in-ec2-security-group) 
+13. [Configure UFW](#configure-ufw) 
+14. [Test the Application](#test-the-application) 
+15. [Enable SSL with GoDaddy (Optional)](#enable-ssl-with-goDaddy-(optional)) 
 
 ## Prerequisites
 Before starting, ensure you have:
@@ -37,4 +37,4 @@ Before starting, ensure you have:
 ## Open Necessary Ports in EC2 Security Group
 ## Configure UFW
 ## Test the Application
-## Enable SSL with GoDaddy
+## Enable SSL with GoDaddy (Optional)
