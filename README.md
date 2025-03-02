@@ -109,7 +109,7 @@ sudo chown -R <NEW_USER>:<NEW_USER> /home/<NEW_USER>/.ssh
 ```
 
 ## Remove Ubuntu Default User
-Exit from the console then SSH connect to the new user
+Exit the console and then SSH into the new user:
 ```cmd
 ssh -i <PEM_FILE> <NEW_USER>@<EC2_PUBLIC_IP>
 ```
