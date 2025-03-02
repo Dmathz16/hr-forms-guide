@@ -58,51 +58,54 @@ You'll be prompted to enter and confirm a **new root password**.
 ## Create a New Ubuntu User
 To create a new user, switch to the root user:
 ```cmd
-sudo passwd root
+sudo -i
 ```
 Then, add the new user:
 ```cmd
-sudo passwd root
+adduser <NEW_USER>
 ```
 
 Add the user to the sudo group:
 ```cmd
-sudo passwd root
+usermod -aG sudo <NEW_USER>
 ```
 
 Add the user to the www-data group and set the appropriate permissions for /var/www:
 ```cmd
-sudo passwd root
+usermod -aG www-data <NEW_USER>
 ```
 Set correct permissions and ownership:
 ```cmd
-sudo passwd root
+sudo chmod -R 775 /var/www
+sudo chown -R <NEW_USER>:www-data /var/www
 ```
 
 Open the SSH configuration file:
 ```cmd
-sudo passwd root
+nano /etc/ssh/sshd_config
 ```
 Uncomment or modify the following line:
 ```cmd
-sudo passwd root
+PasswordAuthentication yes
 ```
 Save the file and restart the SSH service:
 ```cmd
-sudo passwd root
+sudo systemctl restart ssh.service
 ```
 
 Create the .ssh directory for the new user:
 ```cmd
-sudo passwd root
+sudo mkdir -p /home/<NEW_USER>/.ssh
+sudo chmod 700 /home/<NEW_USER>/.ssh
 ```
-Copy the authorized SSH keys from the existing user:
+Copy the authorized SSH keys from the existing user (ubuntu):
 ```cmd
-sudo passwd root
+sudo cp /home/<EXISTING_USER>/.ssh/authorized_keys /home/<NEW_USER>/.ssh/authorized_keys
 ```
 Set correct permissions and ownership:
 ```cmd
-sudo passwd root
+sudo chmod 600 /home/<NEW_USER>/.ssh/authorized_keys
+sudo chown -R <NEW_USER>:<NEW_USER> /home/<NEW_USER>/.ssh
 ```
 
 ## Remove Ubuntu Default User
