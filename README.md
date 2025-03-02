@@ -22,23 +22,23 @@
 
 ## Prerequisites
 Before starting, ensure you have:
-  * An AWS EC2 instance running Ubuntu
-  * A domain name (optional, but recommended)
-  * The HR Forms source code and database dump
-  * Your EC2 key pair (.pem file) for SSH access
-  * Basic knowledge of Linux commands
+	* An AWS EC2 instance running Ubuntu
+	* A domain name (optional, but recommended)
+	* The HR Forms source code and database dump
+	* Your EC2 key pair (.pem file) for SSH access
+	* Basic knowledge of Linux commands
 
 ## Connect to EC2 Instance
 Use SSH to connect to your instance. Replace <PEM_FILE> and <EC2_PUBLIC_IP> accordingly.
-```cmd
-ssh -i <PEM_FILE> <EXISTING_USER>@<EC2_PUBLIC_IP>
-```
+	```cmd
+	ssh -i <PEM_FILE> <EXISTING_USER>@<EC2_PUBLIC_IP>
+	```
 
 ## Update System Packages
 Ensure the system is up to date:
-```cmd
-sudo apt update && sudo apt upgrade -y
-```
+	```cmd
+	sudo apt update && sudo apt upgrade -y
+	```
 
 ## Install Nginx 
 ```cmd
@@ -50,214 +50,214 @@ sudo systemctl enable nginx
 ```
 
 ## Change Root Password
-For security reasons, it's recommended to change the root password:
-```cmd
-sudo passwd root
-```
-You'll be prompted to enter and confirm a **new root password**. 
+* For security reasons, it's recommended to change the root password:
+	```cmd
+	sudo passwd root
+	```
+	You'll be prompted to enter and confirm a **new root password**. 
 
 ## Create a New Ubuntu User
-To create a new user, switch to the root user:
-```cmd
-sudo -i
-```
-Then, add the new user:
-```cmd
-adduser <NEW_USER>
-```
+* To create a new user, switch to the root user:
+	```cmd
+	sudo -i
+	```
+* Then, add the new user:
+	```cmd
+	adduser <NEW_USER>
+	```
 
-Add the user to the sudo group:
-```cmd
-usermod -aG sudo <NEW_USER>
-```
+* Add the user to the sudo group:
+	```cmd
+	usermod -aG sudo <NEW_USER>
+	```
 
-Add the user to the www-data group and set the appropriate permissions for /var/www:
-```cmd
-usermod -aG www-data <NEW_USER>
-```
-Set correct permissions and ownership:
-```cmd
-sudo chmod -R 775 /var/www
-sudo chown -R <NEW_USER>:www-data /var/www
-```
+* Add the user to the www-data group and set the appropriate permissions for /var/www:
+	```cmd
+	usermod -aG www-data <NEW_USER>
+	```
+* Set correct permissions and ownership:
+	```cmd
+	sudo chmod -R 775 /var/www
+	sudo chown -R <NEW_USER>:www-data /var/www
+	```
 
-Open the SSH configuration file:
-```cmd
-nano /etc/ssh/sshd_config
-```
-Uncomment or modify the following line:
-```cmd
-PasswordAuthentication yes
-```
-Save the file and restart the SSH service:
-```cmd
-sudo systemctl restart ssh.service
-```
+* Open the SSH configuration file:
+	```cmd
+	nano /etc/ssh/sshd_config
+	```
+* Uncomment or modify the following line:
+	```cmd
+	PasswordAuthentication yes
+	```
+* Save the file and restart the SSH service:
+	```cmd
+	sudo systemctl restart ssh.service
+	```
 
-Create the .ssh directory for the new user:
-```cmd
-sudo mkdir -p /home/<NEW_USER>/.ssh
-sudo chmod 700 /home/<NEW_USER>/.ssh
-```
-Copy the authorized SSH keys from the existing user (ubuntu):
-```cmd
-sudo cp /home/<EXISTING_USER>/.ssh/authorized_keys /home/<NEW_USER>/.ssh/authorized_keys
-```
-Set correct permissions and ownership:
-```cmd
-sudo chmod 600 /home/<NEW_USER>/.ssh/authorized_keys
-sudo chown -R <NEW_USER>:<NEW_USER> /home/<NEW_USER>/.ssh
-```
+* Create the .ssh directory for the new user:
+	```cmd
+	sudo mkdir -p /home/<NEW_USER>/.ssh
+	sudo chmod 700 /home/<NEW_USER>/.ssh
+	```
+* Copy the authorized SSH keys from the existing user (ubuntu):
+	```cmd
+	sudo cp /home/<EXISTING_USER>/.ssh/authorized_keys /home/<NEW_USER>/.ssh/authorized_keys
+	```
+* Set correct permissions and ownership:
+	```cmd
+	sudo chmod 600 /home/<NEW_USER>/.ssh/authorized_keys
+	sudo chown -R <NEW_USER>:<NEW_USER> /home/<NEW_USER>/.ssh
+	```
 
 ## Remove Ubuntu Default User
-Exit the console and then SSH into the new user:
-```cmd
-ssh -i <PEM_FILE> <NEW_USER>@<EC2_PUBLIC_IP>
-```
-Switch to the root user:
-```cmd
-sudo -i
-```
-List processes running under the ubuntu user
-```cmd
-ps -u <EXISTING_USER>
-```
-Terminate processes one by one using their Process ID (PROCESS_ID)
-```cmd
-sudo kill <PROCESS_ID>
-```
-Remove the ubuntu user after stopping all processes
-```cmd
-sudo userdel -r <EXISTING_USER>
-```
-Exit the root session
-```cmd
-exit
-```
+* Exit the console and then SSH into the new user:
+	```cmd
+	ssh -i <PEM_FILE> <NEW_USER>@<EC2_PUBLIC_IP>
+	```
+* Switch to the root user:
+	```cmd
+	sudo -i
+	```
+* List processes running under the ubuntu user:
+	```cmd
+	ps -u <EXISTING_USER>
+	```
+* Terminate processes one by one using their Process ID (PROCESS_ID): 
+	```cmd
+	sudo kill <PROCESS_ID>
+	```
+* Remove the ubuntu user after stopping all processes: 
+	```cmd
+	sudo userdel -r <EXISTING_USER>
+	```
+* Exit the root session: 
+	```cmd
+	exit
+	```
 
 ## Transfer and Extract HR Forms Source Code and Database
-On your local computer, open cmd/terminal then navigate to the **.pem** file location:
-```cmd
-cd <PATH_TO_PEM_FILE>
-```
-Transfer the compressed file
-```cmd
-scp -i <PATH_TO_PEM_FILE> <PATH_TO_THE_COMPRESSED_SOURCECODE_AND_DATABASE> <NEW_USER>@<EC2_PUBLIC_IP>:/var/www/
-```
-Verify the transfer
-```cmd
-ssh -i <PEM_FILE> <NEW_USER>@<EC2_PUBLIC_IP>
-ls -lh /var/www/
-```
-If the compressed file is present, install unrar:
-```cmd
-sudo apt install unrar -y
-```
-Extract compressed file to current directory:
-```cmd
-unrar x <PATH_TO_THE_COMPRESSED_SOURCECODE_AND_DATABASE>
-```
-Verify extraction:
-```cmd
-ls -lh /var/www/
-```
-If extracted, remove compressed file:
-```cmd
-sudo rm -f <PATH_TO_THE_COMPRESSED_SOURCECODE_AND_DATABASE>
-```
+* On your local computer, open cmd/terminal then navigate to the **.pem** file location:
+	```cmd
+	cd <PATH_TO_PEM_FILE>
+	```
+* Transfer the compressed file
+	```cmd
+	scp -i <PATH_TO_PEM_FILE> <PATH_TO_THE_COMPRESSED_SOURCECODE_AND_DATABASE> <NEW_USER>@<EC2_PUBLIC_IP>:/var/www/
+	```
+* Verify the transfer
+	```cmd
+	ssh -i <PEM_FILE> <NEW_USER>@<EC2_PUBLIC_IP>
+	ls -lh /var/www/
+	```
+* If the compressed file is present, install unrar:
+	```cmd
+	sudo apt install unrar -y
+	```
+* Extract compressed file to current directory:
+	```cmd
+	unrar x <PATH_TO_THE_COMPRESSED_SOURCECODE_AND_DATABASE>
+	```
+* Verify extraction:
+	```cmd
+	ls -lh /var/www/
+	```
+* If extracted, remove compressed file:
+	```cmd
+	sudo rm -f <PATH_TO_THE_COMPRESSED_SOURCECODE_AND_DATABASE>
+	```
 
 ## Install MySQL and Set Up Database
-Install and set up the MySQL Server:
-```cmd
-sudo apt-get install mysql-server -y
-sudo mysql_secure_installation
-```
-Connect to the MySQL Server:
-```cmd
-sudo mysql -u root -p
-```
-Create a database:
-```cmd
-CREATE DATABASE <DATABASE_NAME>;
-SHOW DATABASES;
-```
-Configure a new MySQL user account for local connections:
-```cmd
-CREATE USER '<MYSQL_USERNAME>'@'localhost' IDENTIFIED BY '<MYSQL_PASSWORD>';
-GRANT ALL PRIVILEGES ON <DATABASE_NAME>.* TO '<MYSQL_USERNAME>'@'localhost';
-FLUSH PRIVILEGES;
-EXIT;
-```
-Import an existing SQL file using the new MySQL account:
-```cmd
-sudo mysql -u <MYSQL_USERNAME> -p <DATABASE_NAME> < <PATH_TO_SQL_FILE>
-```
-Verify the data import:
-```cmd
-sudo mysql -u <MYSQL_USERNAME> -p
-```
-```cmd
-SHOW DATABASES;
-USE <DATABASE_NAME>;
-SHOW TABLES;
-EXIT;
-```
-Open the MySQL configuration file:
-```cmd
-sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
-```
-Add the following settings at the bottom of the configuration file, then save:
-```cmd
-thread_cache_size = 4
-innodb_thread_concurrency = 4
-innodb_read_io_threads = 2
-innodb_write_io_threads = 2
-wait_timeout = 300
-interactive_timeout = 300
-innodb_buffer_pool_size = 128M
-event_scheduler = OFF
-performance_schema = 0
-```
+* Install and set up the MySQL Server:
+	```cmd
+	sudo apt-get install mysql-server -y
+	sudo mysql_secure_installation
+	```
+* Connect to the MySQL Server:
+	```cmd
+	sudo mysql -u root -p
+	```
+* Create a database:
+	```cmd
+	CREATE DATABASE <DATABASE_NAME>;
+	SHOW DATABASES;
+	```
+* Configure a new MySQL user account for local connections:
+	```cmd
+	CREATE USER '<MYSQL_USERNAME>'@'localhost' IDENTIFIED BY '<MYSQL_PASSWORD>';
+	GRANT ALL PRIVILEGES ON <DATABASE_NAME>.* TO '<MYSQL_USERNAME>'@'localhost';
+	FLUSH PRIVILEGES;
+	EXIT;
+	```
+* Import an existing SQL file using the new MySQL account:
+	```cmd
+	sudo mysql -u <MYSQL_USERNAME> -p <DATABASE_NAME> < <PATH_TO_SQL_FILE>
+	```
+* Verify the data import:
+	```cmd
+	sudo mysql -u <MYSQL_USERNAME> -p
+	```
+	```cmd
+	SHOW DATABASES;
+	USE <DATABASE_NAME>;
+	SHOW TABLES;
+	EXIT;
+	```
+* Open the MySQL configuration file:
+	```cmd
+	sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+	```
+* Add the following settings at the bottom of the configuration file, then save:
+	```cmd
+	thread_cache_size = 4
+	innodb_thread_concurrency = 4
+	innodb_read_io_threads = 2
+	innodb_write_io_threads = 2
+	wait_timeout = 300
+	interactive_timeout = 300
+	innodb_buffer_pool_size = 128M
+	event_scheduler = OFF
+	performance_schema = 0
+	```
 
 ## Install Python 3 and Its Dependencies
-```cmd
-sudo apt install python3 python3-pip python3-venv -y
-```
+	```cmd
+	sudo apt install python3 python3-pip python3-venv -y
+	```
 
 ## Install Dependencies and Set Up PERA Forms Software
-Navigate to the source code path:
-```cmd
-cd <PATH_TO_THE_UNCOMPRESSED_SOURCECODE_AND_DATABASE>
-```
-Install the virtual environment:
-```cmd
-python3 -m venv .venv
-```
-Activate the virtual environment:
-```cmd
-. .venv/bin/activate
-```
-Install app dependencies:
-```cmd
-pip3 install -r requirements.txt
-```
-Open app configurations:
-```cmd
-nano <PATH_TO_THE_UNCOMPRESSED_SOURCECODE_INIT_FILE>
-```
-Update the database variable values, then save:
-```cmd
-DB_SERVER   = "localhost"
-DB_PORT     = "3306"
-DB_USERNAME = "<MYSQL_USERNAME>"
-DB_PASSWORD = "<MYSQL_PASSWORD>"
-DB_NAME     = "<DATABASE_NAME>"
-```
-Run the app:
-```cmd
-flask --app application run --debug --host 0.0.0.0
-```
-Open the app in a browser using the URL **http://<EC2_PUBLIC_IP>:5000** to check if it is running
+* Navigate to the source code path:
+	```cmd
+	cd <PATH_TO_THE_UNCOMPRESSED_SOURCECODE_AND_DATABASE>
+	```
+* Install the virtual environment:
+	```cmd
+	python3 -m venv .venv
+	```
+* Activate the virtual environment:
+	```cmd
+	. .venv/bin/activate
+	```
+* Install app dependencies:
+	```cmd
+	pip3 install -r requirements.txt
+	```
+* Open app configurations:
+	```cmd
+	nano <PATH_TO_THE_UNCOMPRESSED_SOURCECODE_INIT_FILE>
+	```
+* Update the database variable values, then save:
+	```cmd
+	DB_SERVER   = "localhost"
+	DB_PORT     = "3306"
+	DB_USERNAME = "<MYSQL_USERNAME>"
+	DB_PASSWORD = "<MYSQL_PASSWORD>"
+	DB_NAME     = "<DATABASE_NAME>"
+	```
+* Run the app:
+	```cmd
+	flask --app application run --debug --host 0.0.0.0
+	```
+	Open the app in a browser using the URL **http://<EC2_PUBLIC_IP>:5000** to check if it is running
 
 ## Set Up Gunicorn and WSGI
 If the app still running press **CTRL + C** to stop.
