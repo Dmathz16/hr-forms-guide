@@ -322,10 +322,6 @@ If the app still running press **CTRL + C** to stop.
 	```cmd
 	sudo mkdir -p /var/log/hr_forms
 	```
-	To check logs (optional):
-	```cmd
-	sudo tail -f /var/log/hr_forms/gunicorn_error.log
-	```
 * Set permissions for the log directory:
 	```cmd
 	sudo chown www-data:www-data /var/log/hr_forms
