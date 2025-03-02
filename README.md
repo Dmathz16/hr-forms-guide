@@ -241,6 +241,14 @@ Install app dependencies:
 ```cmd
 pip3 install -r requirements.txt
 ```
+Open app configurations:
+```cmd
+nano <PATH_TO_THE_UNCOMPRESSED_SOURCECODE_INIT_FILE>
+```
+Run the app:
+```cmd
+flask --app application run
+```
 
 ## Set Up Gunicorn
 
