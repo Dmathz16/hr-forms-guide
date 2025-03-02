@@ -27,9 +27,9 @@ Before starting, ensure you have:
 
 ## Connect to EC2 Instance
 Use SSH to connect to your instance. Replace <PEM_FILE> and <EC2_PUBLIC_IP> accordingly.
-'''cmd
+```cmd
 ssh -i <PEM_FILE> ubuntu@<EC2_PUBLIC_IP>
-'''
+```
 ## Update System Packages
 
 ## Create a New Ubuntu User
