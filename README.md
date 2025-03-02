@@ -2,20 +2,20 @@
 
 ## Steps
 1. [Prerequisites](#prerequisites)
-2. [Connect to EC2 Instance](#connect-to-ec2-instance) 
-3. [Update System Packages](#update-system-packages)
-4. [Install Nginx](#install-nginx)
-5. [Change Root Password](#change-root-password)
-6. [Create a New Ubuntu User](#create-a-new-ubuntu-user)
-7. [Remove Ubuntu Default User](#remove-ubuntu-default-user) 
-8. [Transfer and Extract HR Forms Source Code and Database](#transfer-and-extract-hr-forms-source-code-and-database) 
-9. [Install MySQL and Set Up Database](#install-mysql-and-set-up-database)  
-10. [Install Python 3 and Its Dependencies](#install-python-3-and-its-dependencies) 
-11. [Install Dependencies and Set Up PERA Forms Software](#install-dependencies-and-set-up-pera-forms-software) 
-12. [Set Up Gunicorn and WSGI](#set-up-gunicorn-and-wsgi)
-13. [Run Flask App as a System Service](#run-flask-app-as-a-system-service) 
-14. [Configure Nginx](#configure-nginx) 
-15. [Open Necessary Ports in EC2 Security Group](#open-necessary-ports-in-ec2-security-group) 
+2. [Open Necessary Ports in EC2 Security Group](#open-necessary-ports-in-ec2-security-group) 
+3. [Connect to EC2 Instance](#connect-to-ec2-instance) 
+4. [Update System Packages](#update-system-packages)
+5. [Install Nginx](#install-nginx)
+6. [Change Root Password](#change-root-password)
+7. [Create a New Ubuntu User](#create-a-new-ubuntu-user)
+8. [Remove Ubuntu Default User](#remove-ubuntu-default-user) 
+9. [Transfer and Extract HR Forms Source Code and Database](#transfer-and-extract-hr-forms-source-code-and-database) 
+10. [Install MySQL and Set Up Database](#install-mysql-and-set-up-database)  
+11. [Install Python 3 and Its Dependencies](#install-python-3-and-its-dependencies) 
+12. [Install Dependencies and Set Up PERA Forms Software](#install-dependencies-and-set-up-pera-forms-software) 
+13. [Set Up Gunicorn and WSGI](#set-up-gunicorn-and-wsgi)
+14. [Run Flask App as a System Service](#run-flask-app-as-a-system-service) 
+15. [Configure Nginx](#configure-nginx) 
 16. [Configure UFW](#configure-ufw) 
 17. [Test the Application](#test-the-application) 
 18. [Enable SSL with GoDaddy (Optional)](#enable-ssl-with-goDaddy-optional) 
@@ -27,6 +27,14 @@ Before starting, ensure you have:
 * The HR Forms source code and database dump
 * Your EC2 key pair (.pem file) for SSH access
 * Basic knowledge of Linux commands
+
+## Open Necessary Ports in EC2 Security Group
+1. In the AWS Console, go to EC2 > Instances, find your instance, and click its Security Group.
+2. Under the Inbound rules tab, click Edit inbound rules.
+3. Click Add Rule and open these ports:
+	* 22 (SSH) → My IP
+	* 80 (HTTP), 443 (HTTPS), 5000 (Flask, optional), 8000 (Gunicorn, optional) → Anywhere (0.0.0.0/0)
+4. Click Save rules. 
 
 ## Connect to EC2 Instance
 * Use SSH to connect to your instance. Replace <PEM_FILE> and <EC2_PUBLIC_IP> accordingly: 
@@ -378,14 +386,6 @@ If the app still running press **CTRL + C** to stop.
 	```cmd
 	sudo systemctl restart nginx
 	```
-
-## Open Necessary Ports in EC2 Security Group
-1. In the AWS Console, go to EC2 > Instances, find your instance, and click its Security Group.
-2. Under the Inbound rules tab, click Edit inbound rules.
-3. Click Add Rule and open these ports:
-	* 22 (SSH) → My IP
-	* 80 (HTTP), 443 (HTTPS), 5000 (Flask, optional), 8000 (Gunicorn, optional) → Anywhere (0.0.0.0/0)
-4. Click Save rules. 
 
 ## Configure UFW
 ```cmd
