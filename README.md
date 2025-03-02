@@ -22,11 +22,11 @@
 
 ## Prerequisites
 Before starting, ensure you have:
-	* An AWS EC2 instance running Ubuntu
-	* A domain name (optional, but recommended)
-	* The HR Forms source code and database dump
-	* Your EC2 key pair (.pem file) for SSH access
-	* Basic knowledge of Linux commands
+* An AWS EC2 instance running Ubuntu
+* A domain name (optional, but recommended)
+* The HR Forms source code and database dump
+* Your EC2 key pair (.pem file) for SSH access
+* Basic knowledge of Linux commands
 
 ## Connect to EC2 Instance
 Use SSH to connect to your instance. Replace <PEM_FILE> and <EC2_PUBLIC_IP> accordingly.
