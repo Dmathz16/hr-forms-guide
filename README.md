@@ -170,7 +170,6 @@ Install and set up the MySQL Server:
 ```cmd
 sudo apt-get install mysql-server -y
 sudo mysql_secure_installation
-sudo systemctl status mysql
 ```
 Connect to the MySQL Server:
 ```cmd
