@@ -4,7 +4,7 @@
 1. [Prerequisites](#prerequisites)
 2. [Connect to EC2 Instance](#connect-to-ec2-instance) 
 3. [Update System Packages](#update-system-packages) 
-4. [Change root password](#change-root-password)
+4. [Change Root Password](#change-root-password)
 5. [Create a New Ubuntu User](#create-a-new-ubuntu-user) 
 6. [Transfer HR Forms Source Code and Database](#transfer-hr-forms-source-code-and-database) 
 7. [Install Nginx](#install-nginx)  
