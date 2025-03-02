@@ -15,7 +15,7 @@
 12. [Open Necessary Ports in EC2 Security Group](#open-necessary-ports-in-ec2-security-group) 
 13. [Configure UFW](#configure-ufw) 
 14. [Test the Application](#test-the-application) 
-15. [Enable SSL with GoDaddy (Optional)](#enable-ssl-with-goDaddy-(optional)) 
+15. [Enable SSL with GoDaddy (Optional)](#enable-ssl-with-goDaddy-optional) 
 
 ## Prerequisites
 Before starting, ensure you have:
