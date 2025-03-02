@@ -220,9 +220,9 @@ sudo systemctl enable nginx
 	```
 
 ## Install Python 3 and Its Dependencies
-	```cmd
-	sudo apt install python3 python3-pip python3-venv -y
-	```
+```cmd
+sudo apt install python3 python3-pip python3-venv -y
+```
 
 ## Install Dependencies and Set Up PERA Forms Software
 * Navigate to the source code path:
