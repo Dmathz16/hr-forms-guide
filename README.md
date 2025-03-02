@@ -362,7 +362,7 @@ If the app still running press **CTRL + C** to stop.
 	
 	    location / {
 	        include proxy_params;
-	        proxy_pass http://unix:/var/www/<project-name>/application.sock;
+	        proxy_pass http://unix:/var/www/hr_forms/application.sock;
 	    }
 	}
 	```
