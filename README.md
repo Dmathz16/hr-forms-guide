@@ -26,16 +26,33 @@ Before starting, ensure you have:
   * Basic knowledge of Linux commands
 
 ## Connect to EC2 Instance
+Use SSH to connect to your instance. Replace <PEM_FILE> and <EC2_PUBLIC_IP> accordingly.
+'''cmd
+ssh -i <PEM_FILE> ubuntu@<EC2_PUBLIC_IP>
+'''
 ## Update System Packages
+
 ## Create a New Ubuntu User
+
 ## Transfer HR Forms Source Code and Database
+
 ## Install Nginx
+
 ## Install MySQL and Set Up Database
+
 ## Install Python 3, pip, and virtualenv
+
 ## Install Dependencies and Set Up PERA Forms Software
+
 ## Set Up Gunicorn
+
 ## Configure Nginx
+
 ## Open Necessary Ports in EC2 Security Group
+
 ## Configure UFW
+
 ## Test the Application
+
 ## Enable SSL with GoDaddy (Optional)
+
