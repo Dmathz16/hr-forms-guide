@@ -383,8 +383,8 @@ If the app still running press **CTRL + C** to stop.
 1. In the AWS Console, go to EC2 > Instances, find your instance, and click its Security Group.
 2. Under the Inbound rules tab, click Edit inbound rules.
 3. Click Add Rule and open these ports:
-* 22 (SSH) → My IP
-* 80 (HTTP), 443 (HTTPS), 5000 (Flask, optional), 8000 (Gunicorn, optional) → Anywhere (0.0.0.0/0)
+	* 22 (SSH) → My IP
+	* 80 (HTTP), 443 (HTTPS), 5000 (Flask, optional), 8000 (Gunicorn, optional) → Anywhere (0.0.0.0/0)
 4. Click Save rules. 
 
 ## Configure UFW
