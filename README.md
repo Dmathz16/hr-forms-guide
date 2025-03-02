@@ -215,7 +215,6 @@ wait_timeout = 300
 interactive_timeout = 300
 innodb_buffer_pool_size = 128M
 event_scheduler = OFF
-key_buffer = 8M
 performance_schema = 0
 ```
 
