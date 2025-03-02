@@ -135,6 +135,14 @@ exit
 ```
 
 ## Transfer HR Forms Source Code and Database
+On you computer, open cmd/terminal then cd to .pem file path:
+```cmd
+cd <PATH_TO_PEM_FILE>
+```
+Some des
+```cmd
+scp -i <PATH_TO_PEM_FILE> <PATH_TO_COMPRESSED_SOURCECODE_AND_DATABASE> <NEW_USER>@<EC2_PUBLIC_IP>:/var/www/
+```
 
 ## Install MySQL and Set Up Database
 
