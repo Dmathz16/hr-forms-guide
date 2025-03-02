@@ -179,7 +179,6 @@ Create a database:
 ```cmd
 CREATE DATABASE <DATABASE_NAME>;
 SHOW DATABASES;
-EXIT;
 ```
 Configure a new MySQL user account for local connections:
 ```cmd
