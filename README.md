@@ -260,34 +260,34 @@ Open the app in a browser using the URL **http://<EC2_PUBLIC_IP>:5000** to check
 
 ## Set Up Gunicorn and WSGI
 If the app still running press **CTRL + C** to stop.
-Install gunicorn:
+* Install gunicorn:
 ```cmd
 pip3 install gunicorn
 ```
-Run app with gunicorn:
+* Run app with gunicorn:
 ```cmd
 gunicorn --bind 0.0.0.0:5000 application:app
 ```
 Open the app in a browser using the URL **http://<EC2_PUBLIC_IP>:5000** to check if it is running
 
-Stop gunicorn by pressing **CTRL + C**, then create wsgi.py file inside project directory:
+* Stop gunicorn by pressing **CTRL + C**, then create wsgi.py file inside project directory:
 ```cmd
 sudo nano <PATH_TO_THE_UNCOMPRESSED_SOURCECODE>/wsgi.py
 ```
-Paste this inside wsgi.py file and save:
+* Paste this inside wsgi.py file and save:
 ```cmd
 from application import app
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0')
 ```
-Run app with gunicorn + wsgi:
+* Run app with gunicorn + wsgi:
 ```cmd
 gunicorn --bind 0.0.0.0:5000 wsgi:app
 ```
 Open the app in a browser using the URL **http://<EC2_PUBLIC_IP>:5000** to check if it is running
 
-Deactivate environment if done testing:
+* Deactivate environment if done testing:
 ```cmd
 deactivate
 ```
