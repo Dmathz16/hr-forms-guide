@@ -154,7 +154,7 @@ sudo apt install unrar -y
 ```
 Extract compressed file to current directory:
 ```cmd
-unrar x file.rar
+unrar x <PATH_TO_THE_COMPRESSED_SOURCECODE_AND_DATABASE>
 ```
 Verify extraction:
 ```cmd
