@@ -21,12 +21,12 @@
 18. [Enable SSL with GoDaddy (Optional)](#enable-ssl-with-goDaddy-optional) 
 
 ## Prerequisites
-* Before starting, ensure you have:
-	* An AWS EC2 instance running Ubuntu
-	* A domain name (optional, but recommended)
-	* The HR Forms source code and database dump
-	* Your EC2 key pair (.pem file) for SSH access
-	* Basic knowledge of Linux commands
+Before starting, ensure you have:
+* An AWS EC2 instance running Ubuntu
+* A domain name (optional, but recommended)
+* The HR Forms source code and database dump
+* Your EC2 key pair (.pem file) for SSH access
+* Basic knowledge of Linux commands
 
 ## Connect to EC2 Instance
 * Use SSH to connect to your instance. Replace <PEM_FILE> and <EC2_PUBLIC_IP> accordingly: 
@@ -35,10 +35,10 @@ ssh -i <PEM_FILE> <EXISTING_USER>@<EC2_PUBLIC_IP>
 ```
 
 ## Update System Packages
-Ensure the system is up to date:
-	```cmd
-	sudo apt update && sudo apt upgrade -y
-	```
+* Ensure the system is up to date:
+```cmd
+sudo apt update && sudo apt upgrade -y
+```
 
 ## Install Nginx 
 ```cmd
