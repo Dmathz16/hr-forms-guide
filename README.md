@@ -12,7 +12,7 @@
 9. [Install MySQL and Set Up Database](#install-mysql-and-set-up-database)  
 10. [Install Python 3 and Its Dependencies](#install-python-3-and-its-dependencies) 
 11. [Install Dependencies and Set Up PERA Forms Software](#install-dependencies-and-set-up-pera-forms-software) 
-12. [Set Up Gunicorn](#set-up-gunicorn)  
+12. [Set Up Gunicorn and WSGI](#set-up-gunicorn-and-wsgi)  
 13. [Configure Nginx](#configure-nginx) 
 14. [Open Necessary Ports in EC2 Security Group](#open-necessary-ports-in-ec2-security-group) 
 15. [Configure UFW](#configure-ufw) 
@@ -224,15 +224,15 @@ sudo apt install python3 python3-pip python3-venv -y
 ```
 
 ## Install Dependencies and Set Up PERA Forms Software
-Navigate to source code path:
+Navigate to the source code path:
 ```cmd
 cd <PATH_TO_THE_UNCOMPRESSED_SOURCECODE_AND_DATABASE>
 ```
-Install vitual environment:
+Install the virtual environment:
 ```cmd
 python3 -m venv .venv
 ```
-Activate virtual environment:
+Activate the virtual environment:
 ```cmd
 . .venv/bin/activate
 ```
@@ -244,7 +244,7 @@ Open app configurations:
 ```cmd
 nano <PATH_TO_THE_UNCOMPRESSED_SOURCECODE_INIT_FILE>
 ```
-Update the database variable values then save:
+Update the database variable values, then save:
 ```cmd
 DB_SERVER   = "localhost"
 DB_PORT     = "3306"
@@ -256,9 +256,41 @@ Run the app:
 ```cmd
 flask --app application run --debug --host 0.0.0.0
 ```
-Open the app in browser using url **http://<EC2_PUBLIC_IP>:5000**
+Open the app in a browser using the URL **http://<EC2_PUBLIC_IP>:5000** to check if it is running
 
-## Set Up Gunicorn
+## Set Up Gunicorn and WSGI
+If the app still running press **CTRL + C** to stop.
+Install gunicorn:
+```cmd
+pip3 install gunicorn
+```
+Run app with gunicorn:
+```cmd
+gunicorn --bind 0.0.0.0:5000 application:app
+```
+Open the app in a browser using the URL **http://<EC2_PUBLIC_IP>:5000** to check if it is running
+
+Stop gunicorn by pressing **CTRL + C**, then create wsgi.py file inside project directory:
+```cmd
+sudo nano <PATH_TO_THE_UNCOMPRESSED_SOURCECODE>/wsgi.py
+```
+Paste this inside wsgi.py file and save:
+```cmd
+from <app> import app
+
+if __name__ == '__main__':
+	app.run(host='0.0.0.0')
+```
+Run app with gunicorn + wsgi:
+```cmd
+gunicorn --bind 0.0.0.0:5000 wsgi:app
+```
+Open the app in a browser using the URL **http://<EC2_PUBLIC_IP>:5000** to check if it is running
+
+Deactivate environment if done testing:
+```cmd
+deactivate
+```
 
 ## Configure Nginx
 
