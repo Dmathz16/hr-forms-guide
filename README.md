@@ -109,6 +109,26 @@ sudo chown -R <NEW_USER>:<NEW_USER> /home/<NEW_USER>/.ssh
 ```
 
 ## Remove Ubuntu Default User
+To remove existing/default user (ubuntu), switch to the root user:
+```cmd
+sudo -i
+```
+List processes running under the ubuntu user
+```cmd
+ps -u <EXISTING_USER>
+```
+Terminate processes one by one using their Process ID (PROCESS_ID)
+```cmd
+sudo kill <PROCESS_ID>
+```
+Remove the ubuntu user after stopping all processes
+```cmd
+sudo userdel -r <EXISTING_USER>
+```
+Exit the root session
+```cmd
+exit
+```
 
 ## Transfer HR Forms Source Code and Database
 
