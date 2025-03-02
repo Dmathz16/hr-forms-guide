@@ -30,7 +30,7 @@ Before starting, ensure you have:
 ## Connect to EC2 Instance
 Use SSH to connect to your instance. Replace <PEM_FILE> and <EC2_PUBLIC_IP> accordingly.
 ```cmd
-ssh -i <PEM_FILE> ubuntu@<EC2_PUBLIC_IP>
+ssh -i <PEM_FILE> <EXISTING_USER>@<EC2_PUBLIC_IP>
 ```
 
 ## Update System Packages
@@ -109,7 +109,11 @@ sudo chown -R <NEW_USER>:<NEW_USER> /home/<NEW_USER>/.ssh
 ```
 
 ## Remove Ubuntu Default User
-To remove existing/default user (ubuntu), switch to the root user:
+Exit from the console then SSH connect to the new user
+```cmd
+ssh -i <PEM_FILE> <NEW_USER>@<EC2_PUBLIC_IP>
+```
+Switch to the root user:
 ```cmd
 sudo -i
 ```
