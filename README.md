@@ -3,11 +3,11 @@
 ## Contents
 1. [Prerequisites](#prerequisites)
 2. [Connect to EC2 Instance](#connect-to-ec2-instance) 
-3. [Update System Packages](#update-system-packages) 
-4. [Change Root Password](#change-root-password)
-5. [Create a New Ubuntu User](#create-a-new-ubuntu-user) 
-6. [Transfer HR Forms Source Code and Database](#transfer-hr-forms-source-code-and-database) 
-7. [Install Nginx](#install-nginx)  
+3. [Update System Packages](#update-system-packages)
+4. [Install Nginx](#install-nginx)
+5. [Change Root Password](#change-root-password)
+6. [Create a New Ubuntu User](#create-a-new-ubuntu-user) 
+7. [Transfer HR Forms Source Code and Database](#transfer-hr-forms-source-code-and-database) 
 8. [Install MySQL and Set Up Database](#install-mysql-and-set-up-database)  
 9. [Install Python 3, pip, and virtualenv](#install-python-3-pip-and-virtualenv) 
 10. [Install Dependencies and Set Up PERA Forms Software](#install-dependencies-and-set-up-pera-forms-software) 
@@ -38,6 +38,15 @@ Ensure the system is up to date:
 sudo apt update && sudo apt upgrade -y
 ```
 
+## Install Nginx 
+```cmd
+sudo apt install nginx -y
+```
+```cmd
+sudo systemctl start nginx
+sudo systemctl enable nginx
+```
+
 ## Change Root Password
 For security reasons, it's recommended to change the root password:
 ```cmd
@@ -48,8 +57,6 @@ You'll be prompted to enter and confirm a **new root password**.
 ## Create a New Ubuntu User
 
 ## Transfer HR Forms Source Code and Database
-
-## Install Nginx
 
 ## Install MySQL and Set Up Database
 
