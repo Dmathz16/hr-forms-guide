@@ -56,6 +56,54 @@ sudo passwd root
 You'll be prompted to enter and confirm a **new root password**. 
 
 ## Create a New Ubuntu User
+To create a new user, switch to the root user:
+```cmd
+sudo passwd root
+```
+Then, add the new user:
+```cmd
+sudo passwd root
+```
+
+Add the user to the sudo group:
+```cmd
+sudo passwd root
+```
+
+Add the user to the www-data group and set the appropriate permissions for /var/www:
+```cmd
+sudo passwd root
+```
+Set correct permissions and ownership:
+```cmd
+sudo passwd root
+```
+
+Open the SSH configuration file:
+```cmd
+sudo passwd root
+```
+Uncomment or modify the following line:
+```cmd
+sudo passwd root
+```
+Save the file and restart the SSH service:
+```cmd
+sudo passwd root
+```
+
+Create the .ssh directory for the new user:
+```cmd
+sudo passwd root
+```
+Copy the authorized SSH keys from the existing user:
+```cmd
+sudo passwd root
+```
+Set correct permissions and ownership:
+```cmd
+sudo passwd root
+```
 
 ## Remove Ubuntu Default User
 
