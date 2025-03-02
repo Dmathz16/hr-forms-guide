@@ -315,9 +315,9 @@ If the app still running press **CTRL + C** to stop.
 	[Service]
 	User=<NEW_USER> 
 	Group=www-data
-	WorkingDirectory=/var/www/hr_forms
-	Environment="PATH=/var/www/hr_forms/.venv/bin"
-	ExecStart=/var/www/hr_forms/.venv/bin/gunicorn --workers 2 --timeout 20 --bind unix:application.sock -m 007 wsgi:app
+	WorkingDirectory=<PATH_TO_THE_UNCOMPRESSED_SOURCECODE>
+	Environment="PATH=<PATH_TO_THE_UNCOMPRESSED_SOURCECODE>/.venv/bin"
+	ExecStart=<PATH_TO_THE_UNCOMPRESSED_SOURCECODE>/.venv/bin/gunicorn --workers 2 --timeout 20 --bind unix:application.sock -m 007 wsgi:app
 	
 	# Log output configuration
 	StandardOutput=append:/var/log/hr_forms/gunicorn_access.log
@@ -349,28 +349,22 @@ If the app still running press **CTRL + C** to stop.
 	```
 * Add the following configuration to handle domain redirection and proxy requests:
 	```cmd
-	# Redirect www.<domain_name> to <domain_name>
 	server {
 	    listen 80;
-	    server_name www.<domain_name>;
-	
-	    return 301 http://<domain_name>$request_uri;
+	    server_name www.<DOMAIN_NAME>;
+	    return 301 http://<DOMAIN_NAME>$request_uri;
 	}
-	# Redirect any IP address requests to <domain_name>
 	server {
 	    listen 80;
 	    server_name <public_ip>;  
-	
-	    return 301 http://<domain_name>$request_uri;
+	    return 301 http://<DOMAIN_NAME>$request_uri;
 	}
-	# Main server block for <domain_name>
 	server {
 	    listen 80;
-	    server_name <domain_name>;
-	
+	    server_name <DOMAIN_NAME>;
 	    location / {
 	        include proxy_params;
-	        proxy_pass http://unix:/var/www/hr_forms/application.sock;
+	        proxy_pass http://unix:<PATH_TO_THE_UNCOMPRESSED_SOURCECODE>/application.sock;
 	    }
 	}
 	```
@@ -397,6 +391,7 @@ sudo ufw status
 ```
 
 ## Test the Application
+Open the app in a browser using the URL **http://<EC2_PUBLIC_IP>** or Domain **http://<DOMAIN_NAME>** to check if it is running.
 
 ## Enable SSL with GoDaddy (Optional)
 
