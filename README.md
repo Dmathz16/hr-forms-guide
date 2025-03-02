@@ -207,7 +207,6 @@ sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
 ```
 Add the following settings at the bottom of the configuration file, then save:
 ```cmd
-[mysqld]
 thread_cache_size = 4
 innodb_thread_concurrency = 4
 innodb_read_io_threads = 2
@@ -220,9 +219,28 @@ key_buffer = 8M
 performance_schema = 0
 ```
 
-## Install Python 3, pip, and virtualenv
+## Install Python 3 and dependencies
+```cmd
+sudo apt install python3 python3-pip python3-venv -y
+```
 
 ## Install Dependencies and Set Up PERA Forms Software
+Navigate to source code path:
+```cmd
+cd <PATH_TO_THE_UNCOMPRESSED_SOURCECODE_AND_DATABASE>
+```
+Install vitual environment:
+```cmd
+python3 -m venv .venv
+```
+Activate virtual environment:
+```cmd
+. .venv/bin/activate
+```
+Install app dependencies:
+```cmd
+pip3 install -r requirements.txt
+```
 
 ## Set Up Gunicorn
 
