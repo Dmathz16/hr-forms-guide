@@ -38,7 +38,7 @@ Ensure the system is up to date:
 sudo apt update && sudo apt upgrade -y
 ```
 
-## Change Root Rassword
+## Change Root Password
 For security reasons, it's recommended to change the root password:
 ```cmd
 sudo passwd root
