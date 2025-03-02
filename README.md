@@ -10,7 +10,7 @@
 7. [Remove Ubuntu Default User](#remove-ubuntu-default-user) 
 8. [Transfer and Extract HR Forms Source Code and Database](#transfer-and-extract-hr-forms-source-code-and-database) 
 9. [Install MySQL and Set Up Database](#install-mysql-and-set-up-database)  
-10. [Install Python 3, pip, and virtualenv](#install-python-3-pip-and-virtualenv) 
+10. [Install Python 3 and Its Dependencies](#install-python--and-its-dependencies) 
 11. [Install Dependencies and Set Up PERA Forms Software](#install-dependencies-and-set-up-pera-forms-software) 
 12. [Set Up Gunicorn](#set-up-gunicorn)  
 13. [Configure Nginx](#configure-nginx) 
@@ -219,7 +219,7 @@ key_buffer = 8M
 performance_schema = 0
 ```
 
-## Install Python 3 and dependencies
+## Install Python 3 and Its Dependencies
 ```cmd
 sudo apt install python3 python3-pip python3-venv -y
 ```
