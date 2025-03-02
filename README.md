@@ -1,7 +1,7 @@
 # Installing HR Forms on an Ubuntu EC2 Instance – Step-by-Step Guide
 
 ## Contents
-1. [Prerequisites](#1.Prerequisites)
+1. [Prerequisites](#1. Prerequisites)
 2. Connect to EC2 Instance 
 3. Update System Packages 
 4. Create a New Ubuntu User
