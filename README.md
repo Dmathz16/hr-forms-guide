@@ -407,6 +407,33 @@ sudo ufw status
 Open the app in a browser using the URL **http://<EC2_PUBLIC_IP>** or Domain **http://<DOMAIN_NAME>** to check if it is running.
 
 ## Enable SSL with GoDaddy (Optional)
+* Install openssl
+```cmd
+sudo apt install openssl
+```
+* Create directory for certificate files
+```cmd
+sudo mkdir -p /etc/ssl/certs/hr_forms
+```
+* Navigate to that directory
+```cmd
+cd /etc/ssl/certs/hr_forms
+```
+* Generate private key without pass phrase
+```cmd
+sudo openssl genpkey -algorithm RSA -out dmathz.com.key
+```
+  Note: **Including pass phrase increases security**
+* Generate CSR
+```cmd
+sudo openssl req -new -key dmathz.com.key -out dmathz.com.csr
+```
+* Open CSR
+```cmd
+sudo nano dmathz.com.csr
+```
+  **Copy the texts in .csr, it will be used to generate ssl from ssl providers (e.g. GoDaddy)**
+* In your computer browser, go to GoDaddy site and download SSL Certificate
 
 ## Guide Placeholders
 * 
