@@ -308,7 +308,7 @@ If the app still running press **CTRL + C** to stop.
 
 	**If it isn't running**, check the wsgi.py code for spacing/indent problem then save and run it again.
 
-* Deactivate environment if done testing:
+* Press **CTRL + C** to stop gunicorn, then deactivate environment if done testing:
 	```cmd
 	deactivate
 	```
