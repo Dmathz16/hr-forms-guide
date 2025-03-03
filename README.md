@@ -294,10 +294,10 @@ If the app still running press **CTRL + C** to stop.
 	```
 * Paste this inside wsgi.py file and save:
 	```cmd
-from application import app
+	from application import app
 	
-if __name__ == '__main__':
-	app.run(host='0.0.0.0')
+	if __name__ == '__main__':
+		app.run(host='0.0.0.0')
 	```
 * Run app with gunicorn + wsgi:
 	```cmd
