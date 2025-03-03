@@ -33,7 +33,7 @@ Before starting, ensure you have:
 2. Under the Inbound rules tab, click Edit inbound rules.
 3. Click Add Rule and open these ports:
 	* 22 (SSH) → My IP
-	* 80 (HTTP), 443 (HTTPS), 5000 (Flask, optional), 8000 (Gunicorn, optional) → Anywhere (0.0.0.0/0)
+	* 80 (HTTP), 443 (HTTPS), 5000 (Flask, optional) → Anywhere (0.0.0.0/0)
 4. Click Save rules. 
 
 ## Connect to EC2 Instance
