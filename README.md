@@ -305,7 +305,7 @@ If the app still running press **CTRL + C** to stop.
 	```
 	Open the app in a browser using the URL **http://<EC2_PUBLIC_IP>:5000** to check if it is running
 
-	**If it isn't running**, check the code for spacing/indent problem then save and run it again.
+	**If it isn't running**, check the wsgi.py code for spacing/indent problem then save and run it again.
 
 * Deactivate environment if done testing:
 	```cmd
