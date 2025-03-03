@@ -155,7 +155,7 @@ sudo systemctl enable nginx
 	```
 * Transfer the compressed file
 	```cmd
-	scp -i <PATH_TO_PEM_FILE> <PATH_TO_THE_COMPRESSED_SOURCECODE_AND_DATABASE> <NEW_USER>@<EC2_PUBLIC_IP>:/var/www/
+	scp -i <PATH_TO_PEM_FILE> <PATH_TO_THE_COMPRESSED_SOURCECODE> <NEW_USER>@<EC2_PUBLIC_IP>:/var/www/
 	```
 * Verify the transfer
 	```cmd
@@ -169,7 +169,7 @@ sudo systemctl enable nginx
 * Extract compressed file to current directory:
 	```cmd
  	cd /var/www
-	unrar x <PATH_TO_THE_COMPRESSED_SOURCECODE_AND_DATABASE>
+	unrar x <PATH_TO_THE_COMPRESSED_SOURCECODE>
 	```
 * Verify extraction:
 	```cmd
@@ -177,7 +177,7 @@ sudo systemctl enable nginx
 	```
 * If extracted, remove compressed file:
 	```cmd
-	sudo rm -f <PATH_TO_THE_COMPRESSED_SOURCECODE_AND_DATABASE>
+	sudo rm -f <PATH_TO_THE_COMPRESSED_SOURCECODE>
 	```
 
 ## Install MySQL and Set Up Database
