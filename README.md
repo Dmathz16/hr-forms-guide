@@ -38,9 +38,9 @@ Before starting, ensure you have:
 4. Click Save rules. 
 
 ## Connect to EC2 Instance
-* Use SSH to connect to your instance. Replace <PEM_FILE> and <EC2_PUBLIC_IP> accordingly: 
+* Use SSH to connect to your instance. Replace <PATH_TO_PEM_FILE> and <EC2_PUBLIC_IP> accordingly: 
 ```cmd
-ssh -i <PEM_FILE> <EXISTING_USER>@<EC2_PUBLIC_IP>
+ssh -i <PATH_TO_PEM_FILE> <EXISTING_USER>@<EC2_PUBLIC_IP>
 ```
 
 ## Update System Packages
@@ -434,17 +434,17 @@ sudo nano dmathz.com.csr
 ```
   **Copy the texts in .csr, it will be used to generate ssl from ssl providers (e.g. GoDaddy)**
 * Exit the console and **in your computer browser**, go to GoDaddy site then generate and download SSL Certificate
-* Transfer the needed files from you computer to the Ubuntu Server
+* Transfer the all the needed files from you computer to the Ubuntu Server
 ```cmd
-scp -i <path_to_pem_file> <path_to_ssl_cert_file> ubuntu@<ipaddress>:/var/www
+scp -i <PATH_TO_PEM_FILE> <PATH_TO_SSL_CERT_FILE> <NEW_USER>@<EC2_PUBLIC_IP>:/var/www
 ```
 * **SSH to server** then move the files to your certificate directory
 ```cmd
-sudo mv <path_to_ssl_file> /etc/ssl/certs/<domain_name>/
+sudo mv <PATH_TO_SSL_CERT_FILE> /etc/ssl/certs/hr_forms/
 ```
 * Directory permission
 ```cmd
-sudo chmod 600 /etc/ssl/certs/<domain_name>/*
+sudo chmod 600 /etc/ssl/certs/hr_forms/*
 ```
 * Check changes
 ```cmd
