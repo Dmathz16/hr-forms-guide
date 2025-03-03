@@ -433,7 +433,27 @@ sudo openssl req -new -key dmathz.com.key -out dmathz.com.csr
 sudo nano dmathz.com.csr
 ```
   **Copy the texts in .csr, it will be used to generate ssl from ssl providers (e.g. GoDaddy)**
-* In your computer browser, go to GoDaddy site and download SSL Certificate
+* Exit the console and **in your computer browser**, go to GoDaddy site then generate and download SSL Certificate
+* Transfer the needed files from you computer to the Ubuntu Server
+```cmd
+scp -i <path_to_pem_file> <path_to_ssl_cert_file> ubuntu@<ipaddress>:/var/www
+```
+* **SSH to server** then move the files to your certificate directory
+```cmd
+sudo mv <path_to_ssl_file> /etc/ssl/certs/<domain_name>/
+```
+* Directory permission
+```cmd
+sudo chmod 600 /etc/ssl/certs/<domain_name>/*
+```
+* Check changes
+```cmd
+sudo nginx -t
+```
+* sudo systemctl reload nginx
+```cmd
+sudo systemctl reload nginx
+```
 
 ## Guide Placeholders
 * 
