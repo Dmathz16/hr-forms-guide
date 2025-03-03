@@ -167,6 +167,7 @@ sudo systemctl enable nginx
 	```
 * Extract compressed file to current directory:
 	```cmd
+ 	cd /var/www
 	unrar x <PATH_TO_THE_COMPRESSED_SOURCECODE_AND_DATABASE>
 	```
 * Verify extraction:
