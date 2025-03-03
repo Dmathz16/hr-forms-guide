@@ -453,7 +453,7 @@ ls
 ```
 * Open the HR Forms service configuration file:
 ```cmd
-sudo nano /etc/systemd/system/hr_forms.service
+sudo nano /etc/nginx/sites-available/hr_forms.conf
 ```
 * Replace all text with the following configuration:
 ```cmd
