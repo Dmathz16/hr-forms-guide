@@ -506,5 +506,26 @@ sudo systemctl reload nginx
 ```
 
 ## Guide Placeholders
-* 
+Ubuntu User:
+* <NEW_USER> - dadwa
+* <EXISTING_USER>
+Paths: 
+* <PATH_TO_PEM_FILE>
+* <PATH_TO_SSL_CERT_FILE>
+* <PATH_TO_THE_COMPRESSED_SOURCECODE>
+* <PATH_TO_THE_UNCOMPRESSED_SOURCECODE>
+* <PATH_TO_SQL_FILE>
+MySQL:
+* <MYSQL_USERNAME>
+* <MYSQL_PASSWORD>
+* <DATABASE_NAME>
+URL:
+* <EC2_PUBLIC_IP>
+* <DOMAIN_NAME>
+SSL:
+* <CERT_NAME>
+* <PRIVATE_KEY>
+* <BUNDLE_NAME>
+Others: 
+* <PROCESS_ID>
 
