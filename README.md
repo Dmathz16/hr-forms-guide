@@ -407,50 +407,130 @@ sudo ufw status
 Open the app in a browser using the URL **http://<EC2_PUBLIC_IP>** or Domain **http://<DOMAIN_NAME>** to check if it is running.
 
 ## Enable SSL with GoDaddy (Optional)
-* Install openssl
+* Install OpenSSL:
 ```cmd
 sudo apt install openssl
 ```
-* Create directory for certificate files
+* Create a directory for certificate files: 
 ```cmd
 sudo mkdir -p /etc/ssl/certs/hr_forms
 ```
-* Navigate to that directory
+* Navigate to the directory: 
 ```cmd
 cd /etc/ssl/certs/hr_forms
 ```
-* Generate private key without pass phrase
+* Generate a private key without a passphrase:
 ```cmd
 sudo openssl genpkey -algorithm RSA -out dmathz.com.key
 ```
   Note: **Including pass phrase increases security**
-* Generate CSR
+* Generate a Certificate Signing Request (CSR):
 ```cmd
 sudo openssl req -new -key dmathz.com.key -out dmathz.com.csr
 ```
-* Open CSR
+* Open the CSR file:
 ```cmd
 sudo nano dmathz.com.csr
 ```
-  **Copy the texts in .csr, it will be used to generate ssl from ssl providers (e.g. GoDaddy)**
-* Exit the console and **in your computer browser**, go to GoDaddy site then generate and download SSL Certificate
-* Transfer the all the needed files from you computer to the Ubuntu Server
+  **Copy the texts in .csr, it will be used to generate ssl from ssl providers (e.g. GoDaddy)** then **CTRL + X** to close the file
+* **Exit the SSH session**, then in your browser, **go to the GoDaddy website** to **generate and download the SSL certificate**
+* Transfer all required files from your computer to the Ubuntu server:
 ```cmd
 scp -i <PATH_TO_PEM_FILE> <PATH_TO_SSL_CERT_FILE> <NEW_USER>@<EC2_PUBLIC_IP>:/var/www
 ```
-* **SSH to server** then move the files to your certificate directory
+* **SSH into the server** and move the SSL certificate files to the certificate directory:
 ```cmd
 sudo mv <PATH_TO_SSL_CERT_FILE> /etc/ssl/certs/hr_forms/
 ```
-* Directory permission
+* Set the correct file permissions:
 ```cmd
 sudo chmod 600 /etc/ssl/certs/hr_forms/*
 ```
-* Check changes
+* Verify that the files exist in the directory:
+```cmd
+cd /etc/ssl/certs/hr_forms
+ls
+```
+* Open the HR Forms service configuration file:
+```cmd
+sudo nano /etc/systemd/system/hr_forms.service
+```
+* Replace all text with the following configuration:
+```cmd
+server {
+    listen 80;
+    server_name www.<domain_name>;
+
+    return 301 http://<domain_name>$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name www.<domain_name>;
+
+    ssl_certificate /etc/ssl/certs/hr_forms/<CERT_NAME>.crt;
+    ssl_certificate_key /etc/ssl/certs/hr_forms/<PRIVATE_KEY>.key;
+    ssl_trusted_certificate /etc/ssl/certs/hr_forms/<BUNDLE_NAME>.crt;
+
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers 'ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256';
+    ssl_prefer_server_ciphers on;
+
+    return 301 https://<domain_name>$request_uri;
+}
+
+server {
+    listen 80;
+    server_name 54.255.58.113;  
+
+    return 301 http://<domain_name>$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name 54.255.58.113;  
+
+    ssl_certificate /etc/ssl/certs/hr_forms/<CERT_NAME>.crt;
+    ssl_certificate_key /etc/ssl/certs/hr_forms/<PRIVATE_KEY>.key;
+    ssl_trusted_certificate /etc/ssl/certs/hr_forms/<BUNDLE_NAME>.crt;
+
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers 'ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256';
+    ssl_prefer_server_ciphers on;
+
+    return 301 https://<domain_name>$request_uri;
+}
+
+server {
+    listen 80;
+    server_name <domain_name>;
+
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name <domain_name>;
+
+    ssl_certificate /etc/ssl/certs/hr_forms/<CERT_NAME>.crt;
+    ssl_certificate_key /etc/ssl/certs/hr_forms/<PRIVATE_KEY>.key;
+    ssl_trusted_certificate /etc/ssl/certs/hr_forms/<BUNDLE_NAME>.crt;
+
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers 'ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256';
+    ssl_prefer_server_ciphers on;
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/var/www/<project-name>/application.sock;
+    }
+}
+```
+* Check the Nginx configuration for errors:
 ```cmd
 sudo nginx -t
 ```
-* sudo systemctl reload nginx
+* Reload Nginx to apply the changes:
 ```cmd
 sudo systemctl reload nginx
 ```
