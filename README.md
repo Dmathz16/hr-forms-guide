@@ -121,7 +121,7 @@ sudo systemctl enable nginx
 ## Remove Ubuntu Default User
 * Exit the console and then SSH into the new user:
 	```cmd
-	ssh -i <PEM_FILE> <NEW_USER>@<EC2_PUBLIC_IP>
+	ssh -i <PATH_TO_PEM_FILE> <NEW_USER>@<EC2_PUBLIC_IP>
 	```
 * Switch to the root user:
 	```cmd
@@ -159,7 +159,7 @@ sudo systemctl enable nginx
 	```
 * Verify the transfer
 	```cmd
-	ssh -i <PEM_FILE> <NEW_USER>@<EC2_PUBLIC_IP>
+	ssh -i <PATH_TO_PEM_FILE> <NEW_USER>@<EC2_PUBLIC_IP>
 	ls -lh /var/www/
 	```
 * If the compressed file is present, install unrar:
