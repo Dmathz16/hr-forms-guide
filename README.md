@@ -507,25 +507,25 @@ sudo systemctl reload nginx
 
 ## Guide Placeholders
 Ubuntu User:
-* <NEW_USER> - dadwa
-* <EXISTING_USER>
+	* <NEW_USER> - A newly created Ubuntu user for security purposes.
+	* <EXISTING_USER> - The default Ubuntu user, typically named **ubuntu**.
 Paths: 
-* <PATH_TO_PEM_FILE>
-* <PATH_TO_SSL_CERT_FILE>
-* <PATH_TO_THE_COMPRESSED_SOURCECODE>
-* <PATH_TO_THE_UNCOMPRESSED_SOURCECODE>
-* <PATH_TO_SQL_FILE>
+	* <PATH_TO_PEM_FILE> - The file path to the SSH .pem key.
+	* <PATH_TO_SSL_CERT_FILE> - The file path to the SSL certificate files.
+	* <PATH_TO_THE_COMPRESSED_SOURCECODE> - The file path to the compressed source code archive.
+	* <PATH_TO_THE_UNCOMPRESSED_SOURCECODE> - The file path to the extracted/uncompressed source code.
+	* <PATH_TO_SQL_FILE> - The file path to the database SQL file inside the uncompressed source code directory.
 MySQL:
-* <MYSQL_USERNAME>
-* <MYSQL_PASSWORD>
-* <DATABASE_NAME>
+	* <MYSQL_USERNAME> - The MySQL username credential.
+	* <MYSQL_PASSWORD> - The MySQL password credential.
+	* <DATABASE_NAME> - The name of the database used by the application.
 URL:
-* <EC2_PUBLIC_IP>
-* <DOMAIN_NAME>
+	* <EC2_PUBLIC_IP> - The public IP address of the AWS EC2 instance.
+	* <DOMAIN_NAME> - The domain name associated with the application.
 SSL:
-* <CERT_NAME>
-* <PRIVATE_KEY>
-* <BUNDLE_NAME>
+	* <CERT_NAME> - The name of the SSL certificate.
+	* <PRIVATE_KEY> - The private key for the SSL certificate.
+	* <BUNDLE_NAME> - The SSL bundle file (CA bundle).
 Others: 
-* <PROCESS_ID>
+	* <PROCESS_ID> - The process ID of a running application on Ubuntu.
 
