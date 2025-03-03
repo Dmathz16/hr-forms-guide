@@ -245,7 +245,7 @@ sudo apt install python3 python3-pip python3-venv -y
 ## Install Dependencies and Set Up PERA Forms Software
 * Navigate to the source code path:
 	```cmd
-	cd <PATH_TO_THE_UNCOMPRESSED_SOURCECODE_AND_DATABASE>
+	cd <PATH_TO_THE_UNCOMPRESSED_SOURCECODE>
 	```
 * Install the virtual environment:
 	```cmd
