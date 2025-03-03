@@ -369,7 +369,7 @@ If hr_forms service status is still showing close it by pressing **CTRL + C**
 	}
 	server {
 	    listen 80;
-	    server_name <public_ip>;  
+	    server_name <EC2_PUBLIC_IP>;  
 	    return 301 http://<DOMAIN_NAME>$request_uri;
 	}
 	server {
@@ -459,14 +459,14 @@ sudo nano /etc/systemd/system/hr_forms.service
 ```cmd
 server {
     listen 80;
-    server_name www.<domain_name>;
+    server_name www.<DOMAIN_NAME>;
 
-    return 301 http://<domain_name>$request_uri;
+    return 301 http://<DOMAIN_NAME>$request_uri;
 }
 
 server {
     listen 443 ssl;
-    server_name www.<domain_name>;
+    server_name www.<DOMAIN_NAME>;
 
     ssl_certificate /etc/ssl/certs/hr_forms/<CERT_NAME>.crt;
     ssl_certificate_key /etc/ssl/certs/hr_forms/<PRIVATE_KEY>.key;
@@ -476,19 +476,19 @@ server {
     ssl_ciphers 'ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256';
     ssl_prefer_server_ciphers on;
 
-    return 301 https://<domain_name>$request_uri;
+    return 301 https://<DOMAIN_NAME>$request_uri;
 }
 
 server {
     listen 80;
-    server_name 54.255.58.113;  
+    server_name <EC2_PUBLIC_IP>;  
 
-    return 301 http://<domain_name>$request_uri;
+    return 301 http://<DOMAIN_NAME>$request_uri;
 }
 
 server {
     listen 443 ssl;
-    server_name 54.255.58.113;  
+    server_name <EC2_PUBLIC_IP>;  
 
     ssl_certificate /etc/ssl/certs/hr_forms/<CERT_NAME>.crt;
     ssl_certificate_key /etc/ssl/certs/hr_forms/<PRIVATE_KEY>.key;
@@ -498,19 +498,19 @@ server {
     ssl_ciphers 'ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256';
     ssl_prefer_server_ciphers on;
 
-    return 301 https://<domain_name>$request_uri;
+    return 301 https://<DOMAIN_NAME>$request_uri;
 }
 
 server {
     listen 80;
-    server_name <domain_name>;
+    server_name <DOMAIN_NAME>;
 
-    return 301 https://$host$request_uri;
+    return 301 https://<DOMAIN_NAME>$request_uri;
 }
 
 server {
     listen 443 ssl;
-    server_name <domain_name>;
+    server_name <DOMAIN_NAME>;
 
     ssl_certificate /etc/ssl/certs/hr_forms/<CERT_NAME>.crt;
     ssl_certificate_key /etc/ssl/certs/hr_forms/<PRIVATE_KEY>.key;
@@ -522,7 +522,7 @@ server {
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/var/www/<project-name>/application.sock;
+        proxy_pass http://unix:/var/www/hr_forms/application.sock;
     }
 }
 ```
