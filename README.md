@@ -140,7 +140,11 @@ sudo systemctl enable nginx
 	```
 * Exit the root session: 
 	```cmd
-	exit
+	exit;
+	```
+* Exit the console: 
+	```cmd
+	exit;
 	```
 
 ## Transfer and Extract HR Forms Source Code and Database
