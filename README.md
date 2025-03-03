@@ -260,7 +260,7 @@ sudo apt install python3 python3-pip python3-venv -y
 	```
 * Open app configurations:
 	```cmd
-	nano <PATH_TO_THE_UNCOMPRESSED_SOURCECODE_INIT_FILE>
+	nano application/__init__.py
 	```
 * Update the database variable values, then save:
 	```cmd
