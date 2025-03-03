@@ -354,6 +354,7 @@ If the app still running press **CTRL + C** to stop.
 	```
 
 ## Configure Nginx
+If hr_forms service status is still showing close it by pressing **CTRL + C**
 * Create an Nginx configuration file for the application:
 	```cmd
 	sudo nano /etc/nginx/sites-available/hr_forms.conf
