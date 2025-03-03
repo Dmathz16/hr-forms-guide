@@ -18,7 +18,8 @@
 15. [Configure Nginx](#configure-nginx) 
 16. [Configure UFW](#configure-ufw) 
 17. [Test the Application](#test-the-application) 
-18. [Enable SSL with GoDaddy (Optional)](#enable-ssl-with-goDaddy-optional) 
+18. [Enable SSL with GoDaddy (Optional)](#enable-ssl-with-goDaddy-optional)
+19. [Guide Placeholders](#guide-placeholders) 
 
 ## Prerequisites
 Before starting, ensure you have:
@@ -406,4 +407,7 @@ sudo ufw status
 Open the app in a browser using the URL **http://<EC2_PUBLIC_IP>** or Domain **http://<DOMAIN_NAME>** to check if it is running.
 
 ## Enable SSL with GoDaddy (Optional)
+
+## Guide Placeholders
+* 
 
