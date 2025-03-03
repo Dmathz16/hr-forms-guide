@@ -231,6 +231,10 @@ sudo systemctl enable nginx
 	event_scheduler = OFF
 	performance_schema = 0
 	```
+ * Restart MySQL Server:
+	```cmd
+	sudo systemctl restart mysql
+	```
 
 ## Install Python 3 and Its Dependencies
 ```cmd
