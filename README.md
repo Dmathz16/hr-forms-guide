@@ -459,51 +459,21 @@ sudo nano /etc/nginx/sites-available/hr_forms.conf
 ```cmd
 server {
     listen 80;
-    server_name www.<DOMAIN_NAME>;
-
-    return 301 http://<DOMAIN_NAME>$request_uri;
+    server_name www.<DOMAIN_NAME> <DOMAIN_NAME> <EC2_PUBLIC_IP>;
+    return 301 https://<DOMAIN_NAME>$request_uri;
 }
 
 server {
     listen 443 ssl;
-    server_name www.<DOMAIN_NAME>;
+    server_name www.<DOMAIN_NAME> <EC2_PUBLIC_IP>;
 
     ssl_certificate /etc/ssl/certs/hr_forms/<CERT_NAME>.crt;
     ssl_certificate_key /etc/ssl/certs/hr_forms/<PRIVATE_KEY>.key;
     ssl_trusted_certificate /etc/ssl/certs/hr_forms/<BUNDLE_NAME>.crt;
 
     ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_ciphers 'ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256';
+    ssl_ciphers HIGH:!aNULL:!MD5;
     ssl_prefer_server_ciphers on;
-
-    return 301 https://<DOMAIN_NAME>$request_uri;
-}
-
-server {
-    listen 80;
-    server_name <EC2_PUBLIC_IP>;  
-
-    return 301 http://<DOMAIN_NAME>$request_uri;
-}
-
-server {
-    listen 443 ssl;
-    server_name <EC2_PUBLIC_IP>;  
-
-    ssl_certificate /etc/ssl/certs/hr_forms/<CERT_NAME>.crt;
-    ssl_certificate_key /etc/ssl/certs/hr_forms/<PRIVATE_KEY>.key;
-    ssl_trusted_certificate /etc/ssl/certs/hr_forms/<BUNDLE_NAME>.crt;
-
-    ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_ciphers 'ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256';
-    ssl_prefer_server_ciphers on;
-
-    return 301 https://<DOMAIN_NAME>$request_uri;
-}
-
-server {
-    listen 80;
-    server_name <DOMAIN_NAME>;
 
     return 301 https://<DOMAIN_NAME>$request_uri;
 }
@@ -517,7 +487,7 @@ server {
     ssl_trusted_certificate /etc/ssl/certs/hr_forms/<BUNDLE_NAME>.crt;
 
     ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_ciphers 'ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256';
+    ssl_ciphers HIGH:!aNULL:!MD5;
     ssl_prefer_server_ciphers on;
 
     location / {
