@@ -18,7 +18,7 @@
 15. [Configure Nginx](#configure-nginx) 
 16. [Configure UFW](#configure-ufw) 
 17. [Test the Application](#test-the-application) 
-18. [Enable SSL(Optional)](#enable-ssl-optional)
+18. [Enable SSL (Optional)](#enable-ssl-optional)
 19. [Guide Placeholders](#guide-placeholders) 
 
 ## Prerequisites
