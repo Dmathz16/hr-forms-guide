@@ -19,7 +19,7 @@
 16. [Configure UFW](#configure-ufw) 
 17. [Test the Application](#test-the-application) 
 18. [Enable SSL (Optional)](#enable-ssl-optional)
-19. [Guide Placeholders](#guide-placeholders) 
+19. [Guide Placeholders](#guide-placeholders)
 
 ## Prerequisites
 Before starting, ensure you have:
@@ -47,6 +47,8 @@ ssh -i <PATH_TO_PEM_FILE> <EXISTING_USER>@<EC2_PUBLIC_IP>
 * Ensure the system is up to date:
 ```cmd
 sudo apt update && sudo apt upgrade -y
+sudo timedatectl set-timezone Asia/Manila
+timedatectl
 ```
 
 ## Install Nginx 
