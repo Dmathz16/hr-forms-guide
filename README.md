@@ -228,8 +228,9 @@ sudo systemctl enable nginx
 	innodb_thread_concurrency = 4
 	innodb_read_io_threads = 2
 	innodb_write_io_threads = 2
-	wait_timeout = 300
-	interactive_timeout = 300
+	wait_timeout = 28800
+	interactive_timeout = 28800
+	max_allowed_packet = 64M
 	innodb_buffer_pool_size = 128M
 	event_scheduler = OFF
 	performance_schema = 0
