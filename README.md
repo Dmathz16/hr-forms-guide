@@ -533,6 +533,7 @@ sudo systemctl reload nginx
 * <CERT_NAME> – The name of the SSL certificate.
 * <PRIVATE_KEY> – The private key for the SSL certificate.
 * <BUNDLE_NAME> – The SSL bundle file (CA bundle).
+
 **Others:**
 * <PROCESS_ID> – The process ID of a running application on Ubuntu.
 
