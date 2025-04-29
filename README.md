@@ -379,7 +379,7 @@ If hr_forms service status is still showing close it by pressing **CTRL + C**
 	    listen 80;
 	    server_name <DOMAIN_NAME>;
 	
-	    client_max_body_size 50m;
+	    client_max_body_size 50M;
  
 	    location / {
 	        include proxy_params;
@@ -487,6 +487,8 @@ server {
 server {
     listen 443 ssl;
     server_name <DOMAIN_NAME>;
+	
+    client_max_body_size 50M;
 
     ssl_certificate /etc/ssl/certs/hr_forms/<CERT_NAME>.crt;
     ssl_certificate_key /etc/ssl/certs/hr_forms/<PRIVATE_KEY>.key;
