@@ -378,6 +378,9 @@ If hr_forms service status is still showing close it by pressing **CTRL + C**
 	server {
 	    listen 80;
 	    server_name <DOMAIN_NAME>;
+	
+	    client_max_body_size 50m;
+ 
 	    location / {
 	        include proxy_params;
 	        proxy_pass http://unix:<PATH_TO_THE_UNCOMPRESSED_SOURCECODE>/application.sock;
